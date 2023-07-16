@@ -1,28 +1,29 @@
 pipeline {
     agent any
-    
-    environment {
-        SONARQUBE_HOME = tool 'sonarscanner'
+
+    tools {
+        maven 'Maven-Tool'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/logicopslab/java-web-app.git'
+                git branch: 'main', url: 'https://github.com/Shahid199578/sonarqube_integration_with_jenkins.git'
             }
         }
-        
+
         stage('Build') {
             steps {
                 sh 'mvn clean package'
             }
         }
-        
+
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv(credentialsId: 'sonar-jenkins') {
-                    sh "${SONARQUBE_HOME}/bin/sonar-scanner"
-                }
+                sh 'mvn sonar:sonar \
+                    -Dsonar.projectKey=Jeninks_Sonar \
+                    -Dsonar.host.url=http://54.92.169.135:9000 \
+                    -Dsonar.login=14da92f285c610f98780db44e07c81f6883405d7'
             }
         }
     }
