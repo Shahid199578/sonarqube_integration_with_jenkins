@@ -21,6 +21,7 @@ To use this project, follow these steps:
 1. Clone the repository to your local machine:
 '
 git clone https://github.com/Shahid199578/sonarqube_integration_with_jenkins.git
+
 '
 
 2. Install and configure SonarQube on your system. Refer to the SonarQube documentation https://docs.sonarqube.org/ for detailed instructions.
