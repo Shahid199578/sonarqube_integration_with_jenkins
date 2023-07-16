@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    
-    environment {
-        SONARQUBE_HOME = tool 'sonarscanner'
+
+    tools {
+        maven 'Maven-Tool'
     }
 
     stages {
