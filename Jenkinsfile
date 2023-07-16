@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        SONARQUBE_HOME = tool 'sonar'
+        SONARQUBE_HOME = tool 'sonarscanner'
     }
 
     stages {
