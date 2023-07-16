@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Shahid199578/sonarqube_integration_with_jenkins.git'
+                git url: 'https://github.com/logicopslab/java-web-app.git'
             }
         }
         
@@ -20,7 +20,7 @@ pipeline {
         
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube Server') {
+                withSonarQubeEnv(credentialsId: 'sonar-jenkins') {
                     sh "${SONARQUBE_HOME}/bin/sonar-scanner"
                 }
             }
