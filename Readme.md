@@ -4,7 +4,7 @@ This project demonstrates the integration between SonarQube and Jenkins for cont
 
 ## Description
 
-The purpose of this project is to provide a seamless integration between SonarQube and Jenkins for automated code quality analysis. It allows you to easily analyze your codebase for potential issues, bugs, and vulnerabilities, ensuring higher code quality and better maintainability.
+The purpose of this project is to provide seamless integration between SonarQube and Jenkins for automated code quality analysis. It allows you to easily analyze your codebase for potential issues, bugs, and vulnerabilities, ensuring higher code quality and better maintainability.
 
 ## Features
 
@@ -26,36 +26,39 @@ git clone https://github.com/Shahid199578/sonarqube_integration_with_jenkins.git
 
 2. Install and configure SonarQube on your system. Refer to the SonarQube documentation https://docs.sonarqube.org/ for detailed instructions.
 
-3. Set up Jenkins on your system. Refer to the Jenkins documentation  for detailed instructions.
+3. Set up Jenkins on your system. Refer to the Jenkins documentation https://www.jenkins.io/doc/book/ for detailed instructions.
 
 4. Install SonarQube Scanner in your Jenkins environment:
 - Go to Jenkins dashboard and navigate to "Manage Jenkins" > "Global Tool Configuration".
 - Scroll down to the "SonarQube Scanner" section and click on "SonarQube Scanner installations..."
 - Click on "Add SonarQube Scanner" and provide the necessary details, such as name and path to the SonarQube Scanner installation. Save the configuration.
 
-5. Create a project in SonarQube:
+5. Create a secret text from sonar:
 - Log in to your SonarQube dashboard.
-- Create a new project and generate a unique project key for it.
+- Go to Administration > security > users > Administrator > Tokens > Generate Tokens.
+- Save your token for future use
 
-6. Configure SonarQube variables in Jenkins:
-- Go to Jenkins dashboard and navigate to "Manage Jenkins" > "Configure System".
-- Scroll down to the "Global properties" section and click on "Environment variables".
-- Add the following environment variables:
-  - `sonarurl`: The URL of your SonarQube server (e.g., `http://localhost:9000`).
-  - `sonarkey`: The access token or API token generated in SonarQube for Jenkins integration.
-- Save the configuration.
-
-7. Create credentials in Jenkins for SonarQube integration:
+6. Create credentials in Jenkins for SonarQube integration:
 - Go to Jenkins dashboard and navigate to "Manage Jenkins" > "Manage Credentials".
 - Click on "Global credentials" and then "Add Credentials".
-- Provide the necessary information, including the SonarQube access token or API token, and save the credentials.
+- select secret text from kind.
+- provide secret text that you have copied from the sonar server.
+- and save the credentials.
+
+7. Set SonarQube servers in Jenkins:
+- Go to Jenkins dashboard and navigate to "Manage Jenkins" > "System".
+- Go to SonarQube servers.
+- check Enviroment Variables.
+- set SonarQube installations, Give any name then "Server URL" (i.e. http://your ip:9000).
+- select "Server authentication token" (created in step 6).
+- and apply then save.
+
 
 8. Configure Jenkins job:
 - Create or open the Jenkins job for your project.
 - Add the necessary build steps to compile and analyze the code using SonarQube.
-- In the build step configuration, specify the SonarQube project key and name (created in Step 5).
-- Configure the SonarQube scanner properties, such as source code location, exclusion rules, etc.
 - Add the SonarQube credentials (created in Step 7) for authentication.
+- Configure the SonarQube scanner properties, such as source code location, exclusion rules, etc.
 - Save the job configuration.
 
 ## Usage
